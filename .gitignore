@@ -1,0 +1,6 @@
+.gradio
+__pycache__
+.venv
+.env
+.ruff_cache
+saved_data
