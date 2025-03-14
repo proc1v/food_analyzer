@@ -76,21 +76,25 @@ def analyze_food_image(image: Image.Image) -> str:
 # Set up Gradio interface components
 with gr.Blocks() as demo:
     # Add a description at the top of the interface
-    gr.Markdown("### 🥗 Food Image Analyzer\nUpload a food image to estimate portion sizes and calories. The app will also flag unhealthy items (high sugar, etc.).")
-    
+    gr.Markdown(
+        "### 🥗 Food Image Analyzer\nUpload a food image to estimate portion sizes and calories. The app will also flag unhealthy items (high sugar, etc.)."
+    )
+
     # Create a row layout with two columns
     with gr.Row():
         with gr.Column():
             image_input = gr.Image(type="pil", label="Upload Food Image")
         with gr.Column():
             analysis_output = gr.Markdown(label="Food Analysis")
-    
+
     # Clear the output when the image changes
     image_input.change(fn=lambda x: "", inputs=image_input, outputs=analysis_output)
-    
+
     # Add a button to trigger analysis (optional)
     analyze_btn = gr.Button("Analyze")
-    analyze_btn.click(fn=analyze_food_image, inputs=image_input, outputs=analysis_output)
+    analyze_btn.click(
+        fn=analyze_food_image, inputs=image_input, outputs=analysis_output
+    )
 
 
 if __name__ == "__main__":
